@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.recipes.app.RecipeController">
+    <top>
+        <VBox styleClass="header">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+                <VBox>
+                    <Label text="Recipe Manager" styleClass="header-label"/>
+                    <Label text="Your Digital Cookbook" styleClass="sub-header-label"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="searchField" promptText="Search recipes..." styleClass="search-field"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <left>
+        <VBox spacing="15" styleClass="sidebar">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            
+            <!-- View Options -->
+            <VBox spacing="10" styleClass="filter-section">
+                <Label text="View" styleClass="section-label"/>
+                <ToggleButton fx:id="toggleViewButton" text="Switch to Cards" styleClass="toggle-button"/>
+                <CheckBox fx:id="favoritesOnlyCheckBox" text="Favorites Only" styleClass="filter-checkbox"/>
+            </VBox>
+
+            <!-- Categories -->
+            <VBox spacing="10" styleClass="filter-section">
+                <Label text="Categories" styleClass="section-label"/>
+                <ComboBox fx:id="categoryComboBox" promptText="Select Category" styleClass="filter-combo"/>
+            </VBox>
+
+            <!-- Difficulty -->
+            <VBox spacing="10" styleClass="filter-section">
+                <Label text="Difficulty" styleClass="section-label"/>
+                <ComboBox fx:id="difficultyComboBox" promptText="Select Difficulty" styleClass="filter-combo"/>
+            </VBox>
+
+            <!-- Dietary Restrictions -->
+            <VBox spacing="10" styleClass="filter-section">
+                <Label text="Dietary Restrictions" styleClass="section-label"/>
+                <CheckBox fx:id="veganCheckBox" text="Vegan" styleClass="filter-checkbox"/>
+                <CheckBox fx:id="vegetarianCheckBox" text="Vegetarian" styleClass="filter-checkbox"/>
+                <CheckBox fx:id="glutenFreeCheckBox" text="Gluten-Free" styleClass="filter-checkbox"/>
+                <CheckBox fx:id="dairyFreeCheckBox" text="Dairy-Free" styleClass="filter-checkbox"/>
+            </VBox>
+
+            <Button text="Apply Filters" onAction="#handleFilter" styleClass="filter-button"/>
+            <Button text="Clear Filters" onAction="#handleClearFilters" styleClass="clear-button"/>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane>
+            <!-- Table View -->
+            <VBox fx:id="tableViewContainer" spacing="10">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+                <TableView fx:id="recipeTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="favoriteColumn" text="" prefWidth="30"/>
+                        <TableColumn fx:id="titleColumn" text="Title" prefWidth="200"/>
+                        <TableColumn fx:id="categoryColumn" text="Category" prefWidth="100"/>
+                        <TableColumn fx:id="cookingTimeColumn" text="Time" prefWidth="80"/>
+                        <TableColumn fx:id="difficultyColumn" text="Difficulty" prefWidth="80"/>
+                        <TableColumn fx:id="servingsColumn" text="Servings" prefWidth="80"/>
+                        <TableColumn fx:id="restrictionsColumn" text="Dietary Restrictions" prefWidth="150"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- Card View -->
+            <ScrollPane fx:id="cardViewContainer" fitToWidth="true" visible="false">
+                <FlowPane fx:id="recipeCardContainer" hgap="20" vgap="20">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                </FlowPane>
+            </ScrollPane>
+        </StackPane>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="CENTER" styleClass="footer">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20"/>
+            </padding>
+            <Button text="Add Recipe" onAction="#handleAddRecipe" styleClass="action-button"/>
+            <Button text="Edit Recipe" onAction="#handleEditRecipe" styleClass="action-button"/>
+            <Button text="Delete Recipe" onAction="#handleDeleteRecipe" styleClass="action-button"/>
+            <Button text="Share Recipe" onAction="#handleShareRecipe" styleClass="action-button"/>
+            <Button text="Print Recipe" onAction="#handlePrintRecipe" styleClass="action-button"/>
+        </HBox>
+    </bottom>
+</BorderPane>
