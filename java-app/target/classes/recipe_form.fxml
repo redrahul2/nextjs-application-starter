@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.recipes.app.RecipeController">
+    <top>
+        <VBox alignment="CENTER" styleClass="header">
+            <padding>
+                <Insets top="20" bottom="20"/>
+            </padding>
+            <Label text="Recipe Manager" styleClass="header-label"/>
+            <Label text="Manage Your Recipes with Dietary Restrictions" styleClass="sub-header-label"/>
+        </VBox>
+    </top>
+
+    <left>
+        <VBox spacing="10" styleClass="sidebar">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label text="Dietary Restrictions" styleClass="section-label"/>
+            <CheckBox fx:id="veganCheckBox" text="Vegan"/>
+            <CheckBox fx:id="vegetarianCheckBox" text="Vegetarian"/>
+            <CheckBox fx:id="glutenFreeCheckBox" text="Gluten-Free"/>
+            <CheckBox fx:id="dairyFreeCheckBox" text="Dairy-Free"/>
+            <Button text="Apply Filters" onAction="#handleFilter" styleClass="filter-button"/>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <TableView fx:id="recipeTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="titleColumn" text="Title"/>
+                    <TableColumn fx:id="restrictionsColumn" text="Dietary Restrictions"/>
+                </columns>
+            </TableView>
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Add Recipe" onAction="#handleAddRecipe" styleClass="action-button"/>
+                <Button text="Edit Recipe" onAction="#handleEditRecipe" styleClass="action-button"/>
+                <Button text="Delete Recipe" onAction="#handleDeleteRecipe" styleClass="action-button"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
